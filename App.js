@@ -6,7 +6,8 @@ import {
   View,
   Text,
   Button,
-  FlatList
+  FlatList, 
+  ScrollView
 } from "react-native";
 import ItemTask from "./components/itemTask";
 
@@ -20,7 +21,26 @@ export default function App() {
   }
 
   function handleAddButton() {
-    setTaskList([...taskList, {title: task, done: false}]);
+    const id = "id" + Math.random().toString(16).slice(2)
+    console.log(id)
+    setTaskList([...taskList, {title: task, done: false, id: id}]);
+  }
+
+  function changeStyleDone(id) {
+    setTaskList{
+    taskList.map((t) => {
+      if (t.id == id) {
+        return{...t, done: !t.done}
+      } 
+      else {
+        return t
+      }
+    })}
+  }
+  console.log(taskList)
+
+  function handleDeleteTask{
+    setTaskList()
   }
 
   return (
@@ -31,7 +51,7 @@ export default function App() {
       </View>
       <FlatList
         data={taskList}
-        renderItem={({item}) => <ItemTask task={item} />}
+        renderItem={({item}) => <ItemTask task={item} changeStyle={changeStyleDone} deleteTask={handleDeleteTask} />}
         keyExtractor={item => item.id}
       />
     </View>

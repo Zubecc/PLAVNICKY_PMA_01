@@ -1,12 +1,9 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export default function ItemTask({task}) {
-  function changeStyle() {
-    
-  }
+export default function ItemTask({task, changeStyle}) {
 
   return (
-    <Pressable onPress={changeStyle} style={task.done ? styles.itemContainerTrue : styles.itemContainer}>
+    <Pressable onPress={() => changeStyle(task.id)} deleteTask>
         <Text style={styles.taskText}>{task.title}</Text>
     </Pressable>
   );
